@@ -1,0 +1,24 @@
+apiVersion: 0.0.1
+kind: ksonnet.io/app
+libraries:
+  tf-serving:
+    gitVersion:
+      commitSha: 0ad91c82d84e0d682f1a8170eb704df831f60006
+      refSpec: master
+    name: tf-serving
+    registry: kubeflow
+name: sklearn-rf
+registries:
+  incubator:
+    gitVersion:
+      commitSha: 422d521c05aa905df949868143b26445f5e4eda5
+      refSpec: master
+    protocol: github
+    uri: github.com/ksonnet/parts/tree/master/incubator
+  kubeflow:
+    gitVersion:
+      commitSha: 0ad91c82d84e0d682f1a8170eb704df831f60006
+      refSpec: master
+    protocol: github
+    uri: github.com/kubeflow/kubeflow/tree/master/kubeflow
+version: 0.0.1
