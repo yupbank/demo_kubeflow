@@ -1,12 +1,13 @@
 ## Install the requirements
 ```
-pip install -r requirements.txt
+pip install TFTree
 ```
 
 ## Export Model to the cloud
 
 ```
-python demo.py --output_dir gs://pengyu-ml-test/sklearn-rf
+YOUR_OWN_BUCKET=gs://pengyu-ml-test/sklearn-rf
+python demo.py --output_dir ${YOUR_OWN_BUCKET}
 ```
 We also output two examples to query
 ```
@@ -23,10 +24,9 @@ ks pkg install kubeflow/tf-serving
 ks env add  cloud
 MODEL_COMPONENT=sklearn-rf
 MODEL_NAME=sklearn-rf
-MODEL_PATH=gs://pengyu-ml-test/sklearn-rf
 MODEL_SERVER_IMAGE=gcr.io/kubeflow/model-server:1.0
 HTTP_PROXY_IMAGE=gcr.io/shopify-codelab-and-demos/http-proxy:1.6
-ks generate tf-serving ${MODEL_COMPONENT} --name=${MODEL_NAME} --namespace=default --model_path=${MODEL_PATH} --model_server_image=${MODEL_SERVER_IMAGE} --http_proxy_image=${HTTP_PROXY_IMAGE}
+ks generate tf-serving ${MODEL_COMPONENT} --name=${MODEL_NAME} --namespace=default --model_path=${YOUR_OWN_BUCKET} --model_server_image=${MODEL_SERVER_IMAGE} --http_proxy_image=${HTTP_PROXY_IMAGE}
 ks apply cloud -c ${MODEL_COMPONENT}
 kubectl get services
 ```
